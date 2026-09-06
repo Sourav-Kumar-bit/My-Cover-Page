@@ -1,26 +1,35 @@
-# SOURAV KUMAR — CASE FILE
+# Sourav Kumar — Portfolio
 
-Personal portfolio. Swiss Industrial Print design system with a hand-built, zero-dependency
-interactive 3D "skill telemetry" constellation (drag to rotate, click a node for its evidence dossier).
+Two pages, no build step, no dependencies.
 
-## Structure
 ```
-index.html      — markup
-css/style.css   — full design system (tokens at the top of the file)
-js/main.js      — entry sequence, scroll systems, 3D constellation (custom canvas 3D, no libraries)
-favicon.svg     — site icon
-.nojekyll       — tells GitHub Pages to serve files as-is
+index.html        Cover — glass instrument panel + live skill telemetry
+casefile.html     Full case file (exhibits, record, credentials)
+css/style.css     Cover styles (design tokens in :root)
+css/casefile.css  Case-file styles
+js/main.js        Cover: aurora, 3D constellation, telemetry, filters
+js/casefile.js    Case-file interactions
+favicon.svg
+.nojekyll         serve files as-is on GitHub Pages
 ```
 
 ## Deploy to GitHub Pages
-1. Create a repo (e.g. `sourav-kumar.github.io` for a root domain, or any repo name for a project page).
-2. Push these files to the `main` branch (index.html at the repo root).
-3. Repo → Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, folder `/ (root)` → Save.
-4. Live in ~1 minute at `https://<username>.github.io/<repo>/`.
+1. Push these files to the repo root of `Sourav-Kumar-bit.github.io` (branch `main`).
+2. Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`.
+3. Live at `https://sourav-kumar-bit.github.io` in about a minute.
+   Leave the **Custom domain** field empty.
 
 ## Editing
-- Colors & type: CSS custom properties in `:root` at the top of `css/style.css`.
-- Skills & evidence: the `SKILLS` array near the top of the constellation section in `js/main.js`.
-- Content: plain HTML in `index.html`, sectioned as 01 Exhibits / 02 Telemetry / 03 Record / 04 Credentials.
+- **Skills + evidence:** the `SKILLS` array at the top of `js/main.js`.
+  Add an entry and it joins the 3D sphere and the keyboard list automatically.
+- **Colours / spacing / blur:** CSS custom properties in `:root` of `css/style.css`.
+- **Copy:** plain HTML in `index.html`.
 
-Hand-built. No frameworks, no build step, no dependencies.
+## Notes
+- **Adaptive quality:** the page samples its own frame rate for the first
+  1.2 s. Below ~35 fps it adds `body.lite`, which swaps live backdrop-blur for
+  solid panels so weak devices stay smooth.
+- **Accessibility:** every node in the 3D map is also a real focusable button in
+  the list beneath it; 44 px minimum touch targets; visible focus rings; honours
+  `prefers-reduced-motion` and `prefers-reduced-transparency`.
+- **Touch:** one finger rotates, two fingers pinch to zoom, tap selects.
